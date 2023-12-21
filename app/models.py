@@ -6,7 +6,7 @@ from django.db.models import Sum
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    avatar = models.ImageField(null=True, blank=True, default='default.png', upload_to='avatar/%Y/%m/%d')
+    avatar = models.ImageField(null=True, blank=True, default='avatar.png', upload_to='avatar/%Y/%m/%d')
     login = models.CharField(max_length=30)
 
 

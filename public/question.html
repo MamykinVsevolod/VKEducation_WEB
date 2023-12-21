@@ -14,7 +14,7 @@
 <div class="row"
      style="border: 1px solid black; border-radius: 5px; background-color: white; margin-bottom: 30px;">
     <div class="col-2">
-        <img src="{% static '/avatar.png' %}" height="50px" width="50px"
+        <img src="{{ item.profile.avatar.url }}" height="50px" width="50px"
              style="border: 1px solid black; object-fit: cover; margin-top: 30px; margin-bottom: 20px; margin-left: 10px;">
         <p style="font-size: 8px; display: block;
     margin-left: auto;
@@ -26,7 +26,7 @@
                 <button type="submit" class="btn btn-primary my-btn-dislike">&#128078;</button>
             </div>
             <div class="col-2">
-                <div style="font-size: 15px;">1</div>
+                <div style="font-size: 15px;">{{ item.rating_count }}</div>
             </div>
             <div class=" col-2">
                 <button type="submit" class="btn btn-primary my-btn-like">&#128077;</button>
@@ -59,7 +59,7 @@
 <div class="row"
      style="border: 1px solid black; border-radius: 5px; background-color: white; margin-bottom: 30px; padding-bottom: 10px;">
     <div class="col-2">
-        <img src="{% static '/avatar.png' %}" height="50px" width="50px"
+        <img src="{{ item.profile.avatar.url }}" height="50px" width="50px"
              style="border: 1px solid black; object-fit: cover; margin-top: 30px; margin-bottom: 20px; margin-left: 10px; ">
         <p style="font-size: 8px; display: block;
     margin-left: auto;
@@ -152,14 +152,36 @@
 <hr>
 <div class="row" style="margin-top: 30px;">
     <div class="mb-3">
-        <form>
-            <label for="InputTextarea" class="form-label">Ваш ответ</label>
-            <textarea class="form-control" id="InputTextarea" name="InputTextarea" placeholder="..."
-                      required style="height: 100px; resize: none;"></textarea>
-            <div class="mb-3" style="margin-top: 20px;">
-                <button class="btn btn-primary" type="submit">Опубликовать</button>
+        <form class="row" style="padding-right: 2%" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        {% if request.user.is_authenticated %}
+        <div class="row" style="padding-bottom: 2%">
+            <div class="form-label" style="padding-bottom: 1%; margin: 0; padding-left: 0; padding-right: 0">
+                {{ field.label }}
             </div>
-        </form>
+            <div style="padding-left: 0">
+                {{ field }}
+                <div style="padding-top: 1%; color: red">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+        <div style="color: red">
+            {{ form.non_field_errors }}
+        </div>
+        <div class="d-grid gap-2 justify-content-md-end d-md-flex" style="padding-right: 4%">
+            <button class="btn btn-success" type="submit">Отправить ответ</button>
+        </div>
+        {% else %}
+        <div class="row" style="padding-bottom: 2%">
+            <div class="form-label" style="padding-bottom: 1%; margin: 0; padding-left: 0; padding-right: 0">
+                Войдите в аккаунт, чтобы добавить свой ответ на вопрос.
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </form>
     </div>
 </div>
 {% endblock %}

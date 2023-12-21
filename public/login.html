@@ -3,38 +3,29 @@
 {% block content %}
 <h2><strong>Вход в аккаунт</strong></h2>
 <div style="width: 350px; margin-top: 30px;">
-    <form>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
         <div class="mb-3">
-            <!-- <label for="InputEmail" class="form-label">Email</label>
-            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                class="form-control" id="InputEmail" name="InputEmail" placeholder="user@gmail.com"
-                maxlength="50" required> -->
-            <label for="InputEmail" class="form-label">Email</label>
-            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                   class="form-control is-invalid" id="InputEmail" placeholder="user@gmail.com"
-                   name="InputEmail" maxlength="50" required>
-            <div class="invalid-feedback">
-                Ошибка ввода
+            <div style = "padding-top: 1%" > {{ field.label }} </div>
+            <div class = "col fieldWrapper" style = "width: 300px;">
+                {{ field }}
+                <div style = "padding-top: 1%; color: red">
+                    {{ error }}
+                </div>
             </div>
         </div>
-        <div class="mb-3">
-            <!-- <label for="InputPassword" class="form-label">Пароль</label>
-            <input type="password" class="form-control" id="InputPassword" name="InputPassword"
-                maxlength="50" required> -->
-            <label for="InputPassword" class="form-label">Пароль</label>
-            <input type="password" pattern="^[a-zA-Z0-9]{8,}" class="form-control"
-                   name="InputPassword" id="InputPassword" maxlength="50" required>
-            <!-- <div class="invalid-feedback">
-                Ошибка ввода
-            </div> -->
+        {% endfor %}
+        <div style = "color: red">
+            {{ form.non_field_errors }}
         </div>
-        <!-- <button type="submit" onclick="document.getElementById('TmpError').style.display = 'block'"
-            class="btn btn-primary">Войти</button>
-         <div id="TmpError" style="display:none; color: red;"> Ошибка при вводе данных </div>  -->
-        <!-- ПРОСТО ПРИМЕР, КАК ПО НАЖАТИИ КНОПКИ ВЫХОДИТ ОШИБКА.-->
         <button type="submit" class="btn btn-primary">Войти</button>
-        <!-- <div style="color: red;"> Ошибка при вводе данных </div> -->
     </form>
+    <div class = "row" style = "padding-top: 5%">
+        <a href = "{% url 'signup' %}">
+            Еще нет аккаунта? Зарегистрируйтесь!
+        </a>
+    </div>
 </div>
 {% endblock %}
 

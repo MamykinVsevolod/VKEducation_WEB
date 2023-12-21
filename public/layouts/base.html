@@ -35,35 +35,60 @@
                         <button class="btn btn-outline-light " type="submit">Поиск</button>
                     </form>
                     <div class="row my-avatar-settings-log">
-                        <!--
-                      -->
-                        {% block navbar %}
-                        <div class="col-4">
-                            <img src="{% static '/avatar.png' %}" height="50px" width="50px"
+                        <!-- {% block navbar %} -->
+                        {% if request.user.is_authenticated %}
+                        <div class="col-4 my-avatar">
+                            <img src="{{ request.user.profile.avatar.url }}" height="50px" width="50px"
                                 style="border: 1px solid black; object-fit: cover;">
                         </div>
                         <div class="col-8">
                             <div class="row my-name">
-                                <p> Kurisu </p>
+                                <p> {{ user.profile.login }} </p>
                             </div>
                             <div class="row my-settings-log">
                                 <div class="col-6">
-
+                                    <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
                                     <form action="{% url 'settings' %}">
                                         <button type="submit"
                                             class="btn btn-outline-light my-btn-settings">Настройки</button>
                                     </form>
                                 </div>
                                 <div class="col-6">
-
-                                    <form action="{% url 'login' %}">
+                                    <!--<a class="my-link-log" href="#">Вход</a> -->
+                                    <form action="{% url 'logout' %}?continue={{ request.path }}?{{ request.GET.urlencode }}">
                                         <button type="submit" class="btn btn-outline-light my-btn-log">Выйти</button>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
-                        {% endblock %}
+                        {% else %}
+                        <div class="col-4 my-avatar">
+                            <img src="{% static '/no_login.png' %}" height="50px" width="50px"
+                                style="border: 1px solid black; object-fit: cover;">
+                        </div>
+                        <div class="col-8">
+                            <div class="row my-name">
+                                <p> ... </p>
+                            </div>
+                            <div class="row my-settings-log-reg">
+                                <div class="col-6">
+                                    <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
+                                    <form action="{% url 'signup' %}?continue={{ request.path }}?{{ request.GET.urlencode }}">
+                                        <button type="submit"
+                                                class="btn btn-outline-light my-btn-settings">Регистрация
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <!--<a class="my-link-log" href="#">Вход</a> -->
+                                    <form action="{% url 'login' %}?continue={{ request.path }}?{{ request.GET.urlencode }}">
+                                        <button type="submit" class="btn btn-outline-light my-btn-log">Войти</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <!-- {% endblock %} -->
                     </div>
                 </div>
             </div>
