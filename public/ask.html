@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<h2><strong>Задать вопрос</strong></h2>
+<div style="width: 600px; margin-top: 30px;">
+    <form class="was-validated">
+        <div class="mb-3">
+            <label for="InputTitle" class="form-label">Заголовок</label>
+            <input type="text" class="form-control" id="InputTitle" placeholder="..."
+                   name="InputTitle" maxlength="200" required>
+            <div class="invalid-feedback">
+                Пожалуйста, введите заголовок.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="InputTextarea" class="form-label">Текст</label>
+            <textarea class="form-control" id="InputTextarea" name="InputTextarea" placeholder="..."
+                      required style="height: 350px; resize: none;"></textarea>
+            <div class="invalid-feedback">
+                Пожалуйста, введите текст.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="InputTags" class="form-label">Теги</label>
+            <input type="text" class="form-control" id="InputTags" placeholder="..."
+                   name="InputTags" maxlength="200" required>
+            <div class="invalid-feedback">
+                Пожалуйста, введите теги.
+            </div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Опубликовать</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+{% block main_css_file %}
+<link rel="stylesheet" href="{% static '/ask.css' %}">
+{% endblock %}
+{% block title %} Задать вопрос {% endblock %}

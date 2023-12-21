@@ -1,0 +1,12 @@
+<div class="col-9"><a href="{% url 'tag' tag_name='BMSTU' page=1 %}" style="text-decoration: underline; color: blue">BMSTU</a></div>
+                            <div class="col-3"><a href="{% url 'tag' tag_name='Chrome' page=1 %}" style="text-decoration: underline; color: rgb(56, 197, 150)">Chrome</a></div>
+                        </div>
+                        <div class="row text-start" style="font-size: 15px; padding-top: 4%">
+                            <div class="col-5"><a href="{% url 'tag' tag_name='Php' page=1 %}" style="text-decoration: underline; color: rgb(146, 230, 12)">Php</a></div>
+                            <div class="col-7"><a href="{% url 'tag' tag_name='VKeducation' page=1 %}" style="text-decoration: underline; color: rgb(1, 116, 239)">VKeducation</a></div>
+                        </div>
+                        <div class="row text-start" style="font-size: 15px; padding-top: 4%">
+
+                            <div class="col-5"><a href="{% url 'tag' tag_name='Ruby' page=1 %}" style="text-decoration: underline; color: rgb(251, 0, 13)">Ruby</a></div>
+                            <div class="col-5"><a href="{% url 'tag' tag_name='SQL' page=1 %}" style="text-decoration: underline; color: rgb(238, 132, 32)">SQL</a></div>
+                            <div class="col-2"><a href="{% url 'tag' tag_name='Android' page=1 %}" style="text-decoration: underline; color: rgb(105, 58, 14)">Android</a></div>

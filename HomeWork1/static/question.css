@@ -1,0 +1,91 @@
+.my-navbar {
+    background-color: steelblue;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    line-height: 0.5;
+}
+
+.my-btn-search {
+    color: white !important;
+    border-color: white !important;
+}
+
+.my-avatar-settings-log {
+    margin-left: 2px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px;
+    font-size: 12px !important;
+}
+
+.my-name {
+    margin-left: -30px !important;
+    margin-top: 8px;
+    color: white;
+}
+
+.my-settings-log {
+    margin-left: -33px !important;
+}
+
+.my-btn-settings {
+    color: blue;
+    font-size: 12px !important;
+    margin-top: -8px;
+}
+
+.my-btn-log {
+    color: blue;
+    font-size: 12px !important;
+    margin-top: -8px;
+}
+
+.my-main {
+    margin-top: 20px;
+}
+
+.my-footer {
+    background-color: steelblue;
+    color: white;
+    line-height: 50px;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+}
+
+.my-settings-log-reg {
+    margin-left: -40px !important;
+}
+
+
+body {
+    height: 100%;
+    width: 100%;
+    background-image: url(back-ground-all2.png);
+    /*your background image*/
+    background-repeat: no-repeat;
+    /*we want to have one single image not a repeated one*/
+    background-size: cover;
+    /*this sets the image to fullscreen covering the whole screen*/
+    /*css hack for ie*/
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='back-ground-all2.png', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='back-ground-all2.png',sizingMethod='scale')";
+}
+
+.my-a-hot-questions {
+    padding-top: 5px;
+}
+
+.my-btn-dislike {
+    width: 20px !important;
+    height: 25px !important;
+    padding: 0px 22px 0px 0px !important;
+    margin-left: -10px;
+    background-color: steelblue !important;
+}
+
+.my-btn-like {
+    width: 20px !important;
+    height: 25px !important;
+    padding: 0px 22px 0px 0px !important;
+    margin-left: -5px;
+    background-color: steelblue !important;
+}

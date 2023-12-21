@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задать вопрос</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/ask.css">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="icon" href="../static/icon.ico" type="image/x-icon">
+</head>
+
+<body style="font-family: Comic Sans MS, Comic Sans, cursive;">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark my-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">AskMe!</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="..." aria-label="Поиск">
+                        <button class="btn btn-outline-light " type="submit">Поиск</button>
+                    </form>
+                    <div class="row my-avatar-settings-log">
+                        <div class="col-4 my-avatar">
+                            <img src="../static/avatar.png" height="50px" width="50px"
+                                style="border: 1px solid black; object-fit: cover;">
+                        </div>
+                        <div class="col-8">
+                            <div class="row my-name">
+                                <p> Kurisu </p>
+                            </div>
+                            <div class="row my-settings-log">
+                                <div class="col-6">
+                                    <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
+                                    <form action="settings.html">
+                                        <button type="submit"
+                                            class="btn btn-outline-light my-btn-settings">Настройки</button>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <!--<a class="my-link-log" href="#">Вход</a> -->
+                                    <form action="login.html">
+                                        <button type="submit" class="btn btn-outline-light my-btn-log">Выйти</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main style="min-height: calc(100vh - 25px);" class="my-main">
+        <div class="container" style="margin-right: 70px !important;">
+            <div class="row justify-content-end" style="padding-top: 2%">
+                <div class="col-9">
+                    <h2> <strong>Задать вопрос</strong> </h2>
+                    <div style="width: 600px; margin-top: 30px;">
+                        <form class="was-validated">
+                            <div class="mb-3">
+                                <label for="InputTitle" class="form-label">Заголовок</label>
+                                <input type="text" class="form-control" id="InputTitle" placeholder="..."
+                                    name="InputTitle" maxlength="200" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите заголовок.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="InputTextarea" class="form-label">Текст</label>
+                                <textarea class="form-control" id="InputTextarea" name="InputTextarea" placeholder="..."
+                                    required style="height: 350px; resize: none;"></textarea>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите текст.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="InputTags" class="form-label">Теги</label>
+                                <input type="text" class="form-control" id="InputTags" placeholder="..."
+                                    name="InputTags" maxlength="200" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите теги.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary" type="submit">Опубликовать</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <p class="text-center" style="font-size: 20px;"><strong>Популярные теги</strong></p>
+                    <div class="container">
+                        <div class="row text-start" style="font-size: 15px; padding-top: 4%;">
+                            <div class="col-9" style="color: blue">BMSTU</div>
+                            <div class="col-3" style="color: rgb(56, 197, 150)">Chrome</div>
+                        </div>
+                        <div class="row text-start" style="font-size: 15px; padding-top: 4%">
+                            <div class="col-5" style="color: rgb(146, 230, 12)">Php</div>
+                            <div class="col-7" style="color: rgb(1, 116, 239)">VKeducation</div>
+                        </div>
+                        <div class="row text-start" style="font-size: 15px; padding-top: 4%">
+
+                            <div class="col-5" style="color: rgb(251, 0, 13)">Ruby</div>
+                            <div class="col-5" style="color: rgb(238, 132, 32)">SQL</div>
+                            <div class="col-2" style="color: rgb(105, 58, 14)">Android</div>
+
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="padding-top: 15%; padding-bottom: 7%; font-size: 20px;">
+                        <strong>Лучшие участники</strong>
+                    </div>
+                    <ul style="font-size: 18px">
+                        <li style="padding-top: 1%">Алан Тьюринг</li>
+                        <li style="padding-top: 1%">Ада Лавлейс</li>
+                        <li style="padding-top: 1%">Билл Гейтс</li>
+                        <li style="padding-top: 1%">Линус Торвальдс</li>
+                        <li style="padding-top: 1%">Марк Цукерберг</li>
+                        <li style="padding-top: 1%">Сергей Брин</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="my-footer">
+        <div class="container">
+            <p style="text-align: center;">Ask me!</p>
+        </div>
+    </footer>
+</body>
+
+</html>
