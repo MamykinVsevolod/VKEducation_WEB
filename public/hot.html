@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
+{% load extras %}
 {% block content %}
 <div class="row">
     <div class="col-7">
@@ -23,7 +24,7 @@
             {{ item.profile.login }}
         </p>
         <!-- </div> -->
-        <div class="row" style="margin-bottom: 10px;">
+        <div class="row like-questions-list" data-id="{{ item.pk }}" style="margin-bottom: 10px;">
             <div class="col-2">
                 <button type="submit" class="btn btn-primary my-btn-dislike">&#128078;</button>
             </div>
