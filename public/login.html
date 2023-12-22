@@ -33,31 +33,5 @@
 <link rel="stylesheet" href="{% static '/login.css' %}">
 {% endblock %}
 
-{% block navbar%}
-<div class="col-4 my-avatar">
-    <img src="{% static '/no_login.png' %}" height="50px" width="50px"
-         style="border: 1px solid black; object-fit: cover;">
-</div>
-<div class="col-8">
-    <div class="row my-name" style="visibility: hidden;">
-        <p> Kurisu </p>
-    </div>
-    <div class="row my-settings-log-reg">
-        <div class="col-6">
-            <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
-            <form action="{% url 'signup' %}">
-                <button type="submit"
-                        class="btn btn-outline-light my-btn-settings">Регистрация
-                </button>
-            </form>
-        </div>
-        <div class="col-6">
-            <!--<a class="my-link-log" href="#">Вход</a> -->
-            <form action="{% url 'login' %}">
-                <button type="submit" class="btn btn-outline-light my-btn-log">Войти</button>
-            </form>
-        </div>
-    </div>
-</div>
-{% endblock %}
+
 {% block title %} Вход в аккаунт {% endblock %}

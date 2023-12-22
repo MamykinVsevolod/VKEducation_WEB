@@ -96,8 +96,17 @@ def question(request, question_id, page=1):
                   {'item': item, 'items': paginate(answers, page), 'paginator': get_paginator(answers), 'form': answer_form})
 
 
+@csrf_protect
+@login_required(login_url='login', redirect_field_name='continue')
 def ask(request):
-    return render(request, 'ask.html')
+    if request.method == "GET":
+        question_form = QuestionForm()
+    elif request.method == "POST":
+        question_form = QuestionForm(request.POST)
+        if question_form.is_valid():
+            new_question = question_form.save(request)
+            return redirect(reverse('question', kwargs={'question_id': new_question.pk, 'page': 1}))
+    return render(request, 'ask.html', context={'form': question_form})
 
 @csrf_protect
 def log_in(request):
@@ -124,9 +133,19 @@ def log_in(request):
     return render(request, 'login.html', context={'form': login_form})
 
 
+@csrf_protect
+@login_required(login_url='login', redirect_field_name='continue')
 def settings(request):
-    return render(request, 'settings.html')
-
+    if request.method == "GET":
+        settings_form = SettingsForm(instance=request.user,
+                                     initial={'nickname': request.user.profile.login})
+    elif request.method == "POST":
+        settings_form = SettingsForm(request.POST, request.FILES, instance=request.user,
+                                     initial={'nickname': request.user.profile.login})
+        if settings_form.is_valid():
+            settings_form.save(request)
+            messages.success(request, 'Новые данные профиля успешно сохранены!')
+    return render(request, 'settings.html', {'form': settings_form})
 @csrf_protect
 def signup(request):
     if request.user.is_authenticated:

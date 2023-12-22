@@ -3,55 +3,33 @@
 {% block content %}
 <h2><strong>Настройки аккаунта</strong></h2>
 <div style="width: 350px; margin-top: 30px;">
-    <form>
-        <div class="mb-3">
-            <label for="InputLogin" class="form-label">Логин</label>
-            <input type="text" pattern="[A-Za-z]+" class="form-control" id="InputLogin"
-                   name="InputLogin" placeholder="user" maxlength="50" required>
-            <p style="font-size: 10px;">Формат: A-Z, a-z</p>
-        </div>
-        <div class="mb-3">
-            <label for="InputEmail" class="form-label">Email</label>
-            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                   class="form-control is-invalid" id="InputEmail" placeholder="user@gmail.com"
-                   name="InputEmail" maxlength="50" required>
-            <div class="invalid-feedback">
-                Ошибка ввода
-            </div>
-            <p style="font-size: 10px;">Формат: A-Z, a-z</p>
-        </div>
-        <div class="mb-3">
-            <label for="InputName" class="form-label">Имя</label>
-            <input type="text" pattern="[A-Za-zА-Яа-яЁё]+" class="form-control" id="InputName"
-                   name="InputName" placeholder="Иван" maxlength="50" required>
-            <p style="font-size: 10px;">Формат: A-Z, a-z; А-Я, а-я</p>
-        </div>
-        <div class="mb-3">
-            <label for="InputPassword" class="form-label">Пароль</label>
-            <input type="password" pattern="^[a-zA-Z0-9]{8,}" class="form-control"
-                   id="InputPassword" name="InputPassword" maxlength="50" required>
-            <p style="font-size: 10px;">Формат: A-Z, a-z; 0-9. Минимум 8 символов.</p>
-        </div>
-        <div class="form-group">
-            <label for="InputAvatar">Загрузить аватар (.png, .jpeg) </label>
-            <div class="row">
-                <div class="col-2">
-                    <img src="{% static '/avatar.png' %}" height="50px" width="50px"
-                         style="border: 1px solid black; object-fit: cover;">
-                </div>
-                <div class="col-10">
-                    <input type="file" class="form-control-file" id="InputAvatar"
-                           accept="image/png, image/jpeg">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="row mb-3">
+            <div class="col-sm-3 col-form-label"> {{ field.label }} </div>
+            <div class = "col-sm-9" style = "width: 375px;">
+                {{ field }}
+                <div style = "padding-top: 1%; color: red">
+                    {{ error }}
                 </div>
             </div>
         </div>
-        <!-- <button type="submit" onclick="document.getElementById('TmpError').style.display = 'block'"
-            class="btn btn-primary">Войти</button>
-         <div id="TmpError" style="display:none; color: red;"> Ошибка при вводе данных </div>  -->
-        <!-- ПРОСТО ПРИМЕР, КАК ПО НАЖАТИИ КНОПКИ ВЫХОДИТ ОШИБКА.-->
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-        <!--  <div style="color: red;"> Ошибка при вводе данных </div> -->
+        {% endfor %}
+        <div style = "color: red">
+            {{ form.non_field_errors }}
+        </div>
+        <div class = "row mb-3" style = "padding-top: 1%; padding-left: 28%">
+            <button type="submit" class="btn btn-success" style = "width: 200px">Сохранить изменения</button>
+        </div>
     </form>
+    {% if messages %}
+    <div class="row" style="color: darkgreen; font-size: 20px; padding-left: 10%">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 {% block main_css_file %}

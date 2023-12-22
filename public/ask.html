@@ -3,35 +3,28 @@
 {% block content %}
 <h2><strong>Задать вопрос</strong></h2>
 <div style="width: 600px; margin-top: 30px;">
-    <form class="was-validated">
-        <div class="mb-3">
-            <label for="InputTitle" class="form-label">Заголовок</label>
-            <input type="text" class="form-control" id="InputTitle" placeholder="..."
-                   name="InputTitle" maxlength="200" required>
-            <div class="invalid-feedback">
-                Пожалуйста, введите заголовок.
+    <form style = "padding-top: 2%" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+       <div class="row" style = "padding-bottom: 2%">
+            <div class = "col-2" style = "padding-left: 0"> {{ field.label }} </div>
+            <div class="col align-self-center">
+                {{ field }}
+                <div style="color: slategray; padding-top: 1%">
+                    {{ field.help_text }}
+                </div>
+                <div style = "padding-top: 1%; color: red">
+                    {{ error }}
+                </div>
             </div>
         </div>
-        <div class="mb-3">
-            <label for="InputTextarea" class="form-label">Текст</label>
-            <textarea class="form-control" id="InputTextarea" name="InputTextarea" placeholder="..."
-                      required style="height: 350px; resize: none;"></textarea>
-            <div class="invalid-feedback">
-                Пожалуйста, введите текст.
-            </div>
+        {% endfor %}
+        <div style = "color: red">
+            {{ form.non_field_errors }}
         </div>
-        <div class="mb-3">
-            <label for="InputTags" class="form-label">Теги</label>
-            <input type="text" class="form-control" id="InputTags" placeholder="..."
-                   name="InputTags" maxlength="200" required>
-            <div class="invalid-feedback">
-                Пожалуйста, введите теги.
-            </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-success" type="submit">Отправить вопрос</button>
         </div>
-        <div class="mb-3">
-            <button class="btn btn-primary" type="submit">Опубликовать</button>
-        </div>
-
     </form>
 </div>
 {% endblock %}
