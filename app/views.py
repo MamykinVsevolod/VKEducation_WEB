@@ -217,3 +217,32 @@ def rate(request):
             QuestionRating.objects.create(mark=rating, post=item_obj, profile=request.user.profile)
 
     return JsonResponse({'count': item_obj.rating_count(), 'action': action})
+
+
+@csrf_protect
+@login_required(login_url='login')
+def correct(request):
+    correctness = request.POST.get('correctness')
+    answer_id = request.POST.get('item_id')
+
+    answer = get_object_or_404(Answer, pk=answer_id)
+    is_correct = 'true'
+
+    if correctness == 'true':
+        if answer.is_correct:
+            answer.is_correct = None
+            is_correct = 'none'
+        else:
+            answer.is_correct = True
+            is_correct = 'true'
+
+    elif correctness == 'false':
+        if answer.is_correct == False:
+            answer.is_correct = None
+            is_correct = 'none'
+        else:
+            answer.is_correct = False
+            is_correct = 'false'
+
+    answer.save()
+    return JsonResponse({'is_correct': is_correct})

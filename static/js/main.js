@@ -168,7 +168,6 @@ for (let item of likesAnswerList) {
 
 for (let item of correctAnswersList) {
     const IsCorrectBtn = item.children[0].children[0];
-    const IsUncorrectBtn = item.children[1].children[0];
 
     IsCorrectBtn.addEventListener('click', () => {
         const formData = new FormData();
@@ -187,41 +186,10 @@ for (let item of correctAnswersList) {
             .then((data) => {
                 if (data.is_correct == 'true') {
                     IsCorrectBtn.checked = true;
-                    IsUncorrectBtn.checked = false;
                 } else if (data.is_correct == 'false') {
                     IsCorrectBtn.checked = false;
-                    IsUncorrectBtn.checked = true;
                 } else {
                     IsCorrectBtn.checked = false;
-                    IsUncorrectBtn.checked = false;
-                }
-            })
-    });
-
-    IsUncorrectBtn.addEventListener('click', () => {
-        const formData = new FormData();
-        formData.append('item_id', item.dataset.id);
-        formData.append('correctness', 'false');
-
-        const request = new Request('/correct/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
-            }
-        })
-        fetch(request)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.is_correct == 'false') {
-                    IsCorrectBtn.checked = false;
-                    IsUncorrectBtn.checked = true;
-                } else if (data.is_correct == 'true') {
-                    IsCorrectBtn.checked = true;
-                    IsUncorrectBtn.checked = false;
-                } else {
-                    IsCorrectBtn.checked = false;
-                    IsUncorrectBtn.checked = false;
                 }
             })
     });

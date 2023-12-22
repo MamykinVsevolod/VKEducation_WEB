@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
+{% load extras %}
 {% block content %}
 <div class="row">
     <div class="col-6" style="display: flex;
@@ -83,16 +84,55 @@
             <div style="font-size: 15px; word-wrap: break-word;"> {{ item.text }}
             </div>
         </div>
-        <div class="row" style="margin-bottom: 20px;">
+        {% if item.is_correct %}
+        {% if request.user.profile == item.question.profile %}
+        <div class="row correct-answer-list" data-id="{{ item.pk }}" style="margin-bottom: 20px;">
             <div class="col-4">
                 <div class="form-check" style="margin-top: 20px;">
-                    <input class="form-check-input" type="checkbox" id="flexCheck1">
-                    <label class="form-check-label" for="flexCheck1">
+                    <input class="form-check-input" type="checkbox" id={{ item.pk|correct }} checked>
+                    <label class="form-check-label" for={{ item.pk|correct }}>
                         Отметить верным
                     </label>
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="row correct-answer-list" data-id="{{ item.pk }}" style="margin-bottom: 20px;">
+            <div class="col-4">
+                <div class="form-check" style="margin-top: 20px;">
+                    <input class="form-check-input" type="checkbox" id={{ item.pk|correct }} checked disabled>
+                    <label class="form-check-label" for={{ item.pk|correct }}>
+                        Отметить верным
+                    </label>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% else %}
+        {% if request.user.profile == item.question.profile %}
+        <div class="row correct-answer-list" data-id="{{ item.pk }}" style="margin-bottom: 20px;">
+            <div class="col-4">
+                <div class="form-check" style="margin-top: 20px;">
+                    <input class="form-check-input" type="checkbox" id={{ item.pk|correct }}>
+                    <label class="form-check-label" for={{ item.pk|correct }}>
+                        Отметить верным
+                    </label>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="row correct-answer-list" data-id="{{ item.pk }}" style="margin-bottom: 20px;">
+            <div class="col-4">
+                <div class="form-check" style="margin-top: 20px;">
+                    <input class="form-check-input" type="checkbox" id={{ item.pk|correct }} disabled>
+                    <label class="form-check-label" for={{ item.pk|correct }}>
+                        Отметить верным
+                    </label>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endfor %}
@@ -171,7 +211,7 @@
             {{ form.non_field_errors }}
         </div>
         <div class="d-grid gap-2 justify-content-md-end d-md-flex" style="padding-right: 4%">
-            <button class="btn my-btn-like" type="submit">Отправить ответ</button>
+            <button class="btn btn-primary" type="submit">Отправить ответ</button>
         </div>
         {% else %}
         <div class="row" style="padding-bottom: 2%">
