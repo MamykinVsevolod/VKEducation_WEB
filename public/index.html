@@ -25,15 +25,9 @@
             {{ item.profile.login }}
         </p>
         <div class="row like-questions-list" data-id="{{ item.pk }}" style="margin-bottom: 10px;">
-            {% if request.user.profile in item.get_negative_votes %}
             <div class="col-2">
                 <button type="submit" class="btn btn-primary my-btn-dislike">&#128078;</button>
             </div>
-            {% else %}
-             <div class="col-2">
-                <button type="submit" class="btn btn-primary my-btn-dislike">&#128078;</button>
-            </div>
-            {% endif %}
             <div class="col-2">
                 <div style="font-size: 15px;">{{ item.rating_count }}</div>
             </div>

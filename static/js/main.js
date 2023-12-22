@@ -45,15 +45,15 @@ for (let item of likesQuestionsList) {
                     Counter.style.color = "green";
 
                 if (data.action == 'add') {
-                    DislikeBtn.classList.remove('my-btn-outline-dislike');
+                    DislikeBtn.classList.remove('my-btn-dislike');
                     DislikeBtn.classList.add('my-btn-dislike');
                 } else {
                     DislikeBtn.classList.remove('my-btn-dislike');
-                    DislikeBtn.classList.add('my-btn-outline-dislike');
+                    DislikeBtn.classList.add('my-btn-dislike');
                 }
 
                 LikeBtn.classList.remove('my-btn-like');
-                LikeBtn.classList.add('btn-outline-success');
+                LikeBtn.classList.add('my-btn-like');
             })
     });
 
@@ -79,15 +79,15 @@ for (let item of likesQuestionsList) {
                     Counter.style.color = "red";
 
                 if (data.action == 'add') {
-                    LikeBtn.classList.remove('btn-outline-success');
+                    LikeBtn.classList.remove('my-btn-like');
                     LikeBtn.classList.add('my-btn-like');
                 } else {
                     LikeBtn.classList.remove('my-btn-like');
-                    LikeBtn.classList.add('btn-outline-success');
+                    LikeBtn.classList.add('my-btn-like');
                 }
 
                 DislikeBtn.classList.remove('my-btn-dislike');
-                DislikeBtn.classList.add('my-btn-outline-dislike');
+                DislikeBtn.classList.add('my-btn-dislike');
             })
     });
 }
@@ -119,15 +119,15 @@ for (let item of likesAnswerList) {
                     Counter.style.color = "green";
 
                 if (data.action == 'add') {
-                    DislikeBtn.classList.remove('my-btn-outline-dislike');
+                    DislikeBtn.classList.remove('my-btn-dislike');
                     DislikeBtn.classList.add('my-btn-dislike');
                 } else {
                     DislikeBtn.classList.remove('my-btn-dislike');
-                    DislikeBtn.classList.add('my-btn-outline-dislike');
+                    DislikeBtn.classList.add('my-btn-dislike');
                 }
 
                 LikeBtn.classList.remove('my-btn-like');
-                LikeBtn.classList.add('btn-outline-success');
+                LikeBtn.classList.add('my-btn-like');
             })
     });
 
@@ -153,15 +153,15 @@ for (let item of likesAnswerList) {
                     Counter.style.color = "red";
 
                 if (data.action == 'add') {
-                    LikeBtn.classList.remove('btn-outline-success');
+                    LikeBtn.classList.remove('my-btn-like');
                     LikeBtn.classList.add('my-btn-like');
                 } else {
                     LikeBtn.classList.remove('my-btn-like');
-                    LikeBtn.classList.add('btn-outline-success');
+                    LikeBtn.classList.add('my-btn-like');
                 }
 
                 DislikeBtn.classList.remove('my-btn-dislike');
-                DislikeBtn.classList.add('my-btn-outline-dislike');
+                DislikeBtn.classList.add('my-btn-dislike');
             })
     });
 }

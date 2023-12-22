@@ -78,7 +78,7 @@ body {
 }
 
 .my-btn-outline-dislike {
-width: 20px !important;
+    width: 20px !important;
     height: 25px !important;
     padding: 0px 22px 0px 0px !important;
     margin-left: -10px;
