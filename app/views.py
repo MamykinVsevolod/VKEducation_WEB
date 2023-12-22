@@ -179,3 +179,41 @@ def logout(request):
         return redirect(request.GET.get('continue'))
     else:
         return redirect(reverse('start'))
+
+
+@csrf_protect
+@login_required(login_url='login')
+def rate(request):
+    item_id = request.POST.get('item_id')
+    rate_type = request.POST.get('rate_type')
+    item_type = request.POST.get('item_type')
+    action = 'add'
+    search_obj = None
+    rating = 0
+
+    if item_type == 'answer':
+        item_obj = get_object_or_404(Answer, pk=item_id)
+        search_obj = AnswerRating.objects.search(item_obj, request.user.profile)
+    elif item_type == 'question':
+        item_obj = get_object_or_404(Question, pk=item_id)
+        search_obj = QuestionRating.objects.search(item_obj, request.user.profile)
+
+    if rate_type == 'like':
+        rating = 1
+    elif rate_type == 'dislike':
+        rating = -1
+
+    if search_obj is not None:
+        if search_obj.mark == rating:
+            search_obj.mark = 0
+            action = 'remove'
+        else:
+            search_obj.mark = rating
+        search_obj.save()
+    else:
+        if item_type == 'answer':
+            AnswerRating.objects.create(mark=rating, post=item_obj, profile=request.user.profile)
+        else:
+            QuestionRating.objects.create(mark=rating, post=item_obj, profile=request.user.profile)
+
+    return JsonResponse({'count': item_obj.rating_count(), 'action': action})
