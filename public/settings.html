@@ -1,7 +1,8 @@
 {% extends 'layouts/base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
-<h2><strong>Настройки аккаунта</strong></h2>
+<h2><strong>{% trans "Настройки аккаунта" %}</strong></h2>
 <div style="width: 350px; margin-top: 30px;">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -20,7 +21,7 @@
             {{ form.non_field_errors }}
         </div>
         <div class = "row mb-3" style = "padding-top: 1%; padding-left: 28%">
-            <button type="submit" class="btn btn-primary" style = "width: 200px;">Сохранить</button>
+            <button type="submit" class="btn btn-primary" style = "width: 200px;">{% trans "Сохранить" %}</button>
         </div>
     </form>
     {% if messages %}
@@ -35,4 +36,4 @@
 {% block main_css_file %}
 <link rel="stylesheet" href="{% static '/settings.css' %}">
 {% endblock %}
-{% block title %} Настройки {% endblock %}
+{% block title %}  {% trans "Настройки" %}{% endblock %}

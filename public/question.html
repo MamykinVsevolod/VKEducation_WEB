@@ -1,15 +1,16 @@
 {% extends 'layouts/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load extras %}
 {% block content %}
 <div class="row">
     <div class="col-6" style="display: flex;
                         align-items: center;">
-        <a class="my-a-hot-questions" href="{% url 'index' page=1 %}"> Все вопросы &#127757;</a>
+        <a class="my-a-hot-questions" href="{% url 'index' page=1 %}"> {% trans "Все вопросы" %} &#127757;</a>
     </div>
     <div class="col-6" style="display: flex;
                         align-items: center;">
-        <a class="my-a-hot-questions" href="{% url 'hot' page=1 %}"> Популярные вопросы &#128293;</a>
+        <a class="my-a-hot-questions" href="{% url 'hot' page=1 %}"> {% trans "Популярные вопросы" %} &#128293;</a>
     </div>
 </div>
 <div class="row"
@@ -45,7 +46,7 @@
         </div>
         <div class="row">
             <div class = "col" style = "padding-left: 0; font-size: 15px;">
-                        Теги:
+                        {% trans "Теги:" %}
                         {% for tag in item.get_tags %}
                         <a href = "{% url 'tag' tag_name=tag page=1 %}" style = "padding-left: 1%;" style="font-size: 15px;">
                             {{ tag }}
@@ -91,7 +92,7 @@
                 <div class="form-check" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id={{ item.pk|correct }} checked>
                     <label class="form-check-label" for={{ item.pk|correct }}>
-                        Отметить верным
+                        {% trans "Отметить верным" %}
                     </label>
                 </div>
             </div>
@@ -102,7 +103,7 @@
                 <div class="form-check" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id={{ item.pk|correct }} checked disabled>
                     <label class="form-check-label" for={{ item.pk|correct }}>
-                        Отметить верным
+                        {% trans "Отметить верным" %}
                     </label>
                 </div>
             </div>
@@ -115,7 +116,7 @@
                 <div class="form-check" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id={{ item.pk|correct }}>
                     <label class="form-check-label" for={{ item.pk|correct }}>
-                        Отметить верным
+                        {% trans "Отметить верным" %}
                     </label>
                 </div>
             </div>
@@ -126,7 +127,7 @@
                 <div class="form-check" style="margin-top: 20px;">
                     <input class="form-check-input" type="checkbox" id={{ item.pk|correct }} disabled>
                     <label class="form-check-label" for={{ item.pk|correct }}>
-                        Отметить верным
+                        {% trans "Отметить верным" %}
                     </label>
                 </div>
             </div>
@@ -211,12 +212,12 @@
             {{ form.non_field_errors }}
         </div>
         <div class="d-grid gap-2 justify-content-md-end d-md-flex" style="padding-right: 4%">
-            <button class="btn btn-primary" type="submit">Отправить ответ</button>
+            <button class="btn btn-primary" type="submit">{% trans "Отправить ответ" %}</button>
         </div>
         {% else %}
         <div class="row" style="padding-bottom: 2%">
             <div class="form-label" style="padding-bottom: 1%; margin: 0; padding-left: 0; padding-right: 0">
-                Войдите в аккаунт, чтобы добавить свой ответ на вопрос.
+                {% trans "Войдите в аккаунт, чтобы добавить свой ответ на вопрос." %}
             </div>
         </div>
         {% endif %}
@@ -228,4 +229,4 @@
 {% block main_css_file %}
 <link rel="stylesheet" href="{% static '/question.css' %}">
 {% endblock %}
-{% block title %} Вопрос {% endblock %}
+{% block title %} {% trans "Вопрос" %} {% endblock %}

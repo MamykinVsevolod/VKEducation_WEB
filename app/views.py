@@ -1,6 +1,7 @@
 # Create your views here.
 import json
-
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required

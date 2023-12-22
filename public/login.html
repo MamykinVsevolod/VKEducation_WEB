@@ -1,7 +1,8 @@
 {% extends 'layouts/base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
-<h2><strong>Вход в аккаунт</strong></h2>
+<h2><strong>{% trans "Вход в аккаунт" %}</strong></h2>
 <div style="width: 350px; margin-top: 30px;">
     <form method="post">
         {% csrf_token %}
@@ -19,11 +20,11 @@
         <div style = "color: red">
             {{ form.non_field_errors }}
         </div>
-        <button type="submit" class="btn btn-primary">Войти</button>
+        <button type="submit" class="btn btn-primary">{% trans "Войти" %}</button>
     </form>
     <div class = "row" style = "padding-top: 5%; text-decoration: underline; color: blue;">
         <a href = "{% url 'signup' %}">
-            Еще нет аккаунта? Зарегистрируйтесь!
+            {% trans "Еще нет аккаунта? Зарегистрируйтесь!" %}
         </a>
     </div>
 </div>

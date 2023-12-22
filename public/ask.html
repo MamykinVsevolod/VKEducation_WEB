@@ -1,7 +1,8 @@
 {% extends 'layouts/base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
-<h2><strong>Задать вопрос</strong></h2>
+<h2><strong>{% trans "Задать вопрос" %}</strong></h2>
 <div style="width: 600px; margin-top: 30px;">
     <form style = "padding-top: 2%" method="post">
         {% csrf_token %}
@@ -23,7 +24,7 @@
             {{ form.non_field_errors }}
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary"  type="submit">Отправить вопрос</button>
+            <button class="btn btn-primary"  type="submit">{% trans "Отправить вопрос" %}</button>
         </div>
     </form>
 </div>
@@ -31,4 +32,4 @@
 {% block main_css_file %}
 <link rel="stylesheet" href="{% static '/ask.css' %}">
 {% endblock %}
-{% block title %} Задать вопрос {% endblock %}
+{% block title %} {% trans "Задать вопрос" %} {% endblock %}

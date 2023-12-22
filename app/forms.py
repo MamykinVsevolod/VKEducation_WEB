@@ -3,59 +3,59 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from datetime import datetime
 import re
-
+from django.utils.translation import gettext_lazy as _
 from app.models import Profile, Question, Tag, Answer, QuestionRating, AnswerRating
 
 
 class LoginForm(forms.Form):
     login = forms.CharField(
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'id': 'InputLogin', 'placeholder': 'Логин для входа в систему'}),
+            attrs={'class': 'form-control', 'id': 'InputLogin', 'placeholder': _('Логин для входа в систему')}),
         max_length=30,
-        label='Введите логин:')
+        label=_('Введите логин:'))
     password = forms.CharField(
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'id': 'InputPassword', 'placeholder': 'Пароль от аккаунта'}), max_length=30,
-        min_length=6, label='Введите пароль:')
+            attrs={'class': 'form-control', 'id': 'InputPassword', 'placeholder': _('Пароль от аккаунта')}), max_length=30,
+        min_length=6, label=_('Введите пароль:'))
 
     def clean_password(self):
         password = self.cleaned_data['password']
         if password is None:
-            raise ValidationError('Пожалуйста, введите пароль.')
+            raise ValidationError(_('Пожалуйста, введите пароль.'))
         return password
 
     def clean_login(self):
         login = self.cleaned_data['login']
         if login is None:
-            raise ValidationError('Пожалуйста, введите логин.')
+            raise ValidationError(_('Пожалуйста, введите логин.'))
         return login
 
 
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'InputLogin',
-                                      'placeholder': 'Логин для входа в аккаунт'}),
+                                      'placeholder': _('Логин для входа в аккаунт')}),
         max_length=15,
-        label='Логин', required=True)
+        label=_('Логин'), required=True)
     email = forms.EmailField(
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'id': 'InputEmail', 'placeholder': 'Адрес электронной почты'}),
+            attrs={'class': 'form-control', 'id': 'InputEmail', 'placeholder': _('Адрес электронной почты')}),
         max_length=40,
-        label='Эл. почта', required=True, help_text='Формат почты: example@example.com')
+        label=_('Эл. почта'), required=True, help_text=_('Формат почты: example@example.com'))
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'InputPassword'}), max_length=30, min_length=6,
-        label='Пароль', required=True, help_text='Минимальная длина пароля - 6 символов.')
+        label=_('Пароль'), required=True, help_text=_('Минимальная длина пароля - 6 символов.'))
     password_check = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'InputPasswordAgain'}), max_length=30,
         min_length=6,
-        label='Повторите пароль', required=True)
+        label=_('Повторите пароль'), required=True)
     nickname = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'InputNickname',
-                                      'placeholder': 'Отображаемое имя'}),
+                                      'placeholder': _('Отображаемое имя')}),
         max_length=30,
-        label='Никнейм', required=True)
+        label=_('Никнейм'), required=True)
     avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control', 'id': 'InputAvatar'}),
-                              label='Загрузите аватар', required=False)
+                              label=_('Загрузите аватар'), required=False)
 
     class Meta:
         model = User
@@ -65,8 +65,8 @@ class RegisterForm(forms.ModelForm):
         password = self.cleaned_data['password']
         password_check = self.cleaned_data['password_check']
         if password != password_check:
-            self.add_error('password_check', 'Введенные пароли не совпадают.')
-            raise ValidationError('Введенные пароли не совпадают.')
+            self.add_error('password_check', _('Введенные пароли не совпадают.'))
+            raise ValidationError(_('Введенные пароли не совпадают.'))
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -74,7 +74,7 @@ class RegisterForm(forms.ModelForm):
             return username
         else:
             self.add_error(None,
-                           'В логине обнаружены недопустимые символы.')
+                           _('В логине обнаружены недопустимые символы.'))
             raise ValidationError(self)
 
     def clean_nickname(self):
@@ -83,7 +83,7 @@ class RegisterForm(forms.ModelForm):
             return nickname
         else:
             self.add_error(None,
-                           'В имени пользователя обнаружены недопустимые символы.')
+                           _('В имени пользователя обнаружены недопустимые символы.'))
             raise ValidationError(self)
 
     def save(self, **kwargs):
@@ -105,16 +105,16 @@ class RegisterForm(forms.ModelForm):
 class QuestionForm(forms.ModelForm):
     title = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'InputTitle',
-                                      'placeholder': 'Заголовок вашего вопроса'}), max_length=70, min_length=10,
-        label='Заголовок вопроса', required=True)
+                                      'placeholder': _('Заголовок вашего вопроса')}), max_length=70, min_length=10,
+        label=_('Заголовок вопроса'), required=True)
     text = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'InputText',
-                                     'placeholder': 'Опишите вашу проблему'}), max_length=1000, min_length=50,
-        label='Текст', required=True)
+                                     'placeholder': _('Опишите вашу проблему')}), max_length=1000, min_length=50,
+        label=_('Текст'), required=True)
     tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'InputTags',
-                                                         'placeholder': 'Ключевые слова, относящиеся к теме вопроса'}),
+                                                         'placeholder': _('Ключевые слова, относящиеся к теме вопроса')}),
                            max_length=50,
-                           label='Теги', required=True, help_text='Максимальное количество тегов: 3')
+                           label=_('Теги'), required=True, help_text=_('Максимальное количество тегов: 3'))
 
     class Meta:
         model = Question
@@ -132,11 +132,11 @@ class QuestionForm(forms.ModelForm):
     def clean_tags(self):
         tags = self.cleaned_data['tags']
         if not re.fullmatch(r'(\w|,| |;)*', tags):
-            self.add_error(None, 'В списке тегов обнаружены недопустимые символы.')
+            self.add_error(None, _('В списке тегов обнаружены недопустимые символы.'))
             raise ValidationError(self)
         tags = re.split(', |; | ', tags)
         if len(tags) > 3:
-            self.add_error(None, 'Вы не можете ввести больше трех тегов.')
+            self.add_error(None, _('Вы не можете ввести больше трех тегов.'))
             raise ValidationError(self)
         tags = self.get_tags(tags)
         return tags
@@ -158,8 +158,8 @@ class QuestionForm(forms.ModelForm):
 class AnswerForm(forms.ModelForm):
     text = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control border-secondary', 'id': 'InputText',
-                                     'placeholder': 'Введите текст ответа', 'rows': 5}), max_length=2000, min_length=10,
-        label='Добавьте свой ответ:', required=True)
+                                     'placeholder': _('Введите текст ответа'), 'rows': 5}), max_length=2000, min_length=10,
+        label=_('Добавьте свой ответ:'), required=True)
 
     class Meta:
         model = Answer
@@ -180,15 +180,15 @@ class AnswerForm(forms.ModelForm):
 class SettingsForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'InputLogin'}), max_length=15,
-        label='Логин')
+        label=_('Логин'))
     email = forms.EmailField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'InputEmail'}), max_length=40,
-        label='Эл. почта')
+        label=_('Эл. почта'))
     nickname = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'InputNickname'}), max_length=30,
-        label='Никнейм')
+        label=_('Никнейм'))
     avatar = forms.ImageField(
-        widget=forms.FileInput(attrs={'class': 'form-control', 'id': 'InputAvatar'}), label='Аватар',
+        widget=forms.FileInput(attrs={'class': 'form-control', 'id': 'InputAvatar'}), label=_('Аватар'),
         required=False)
 
     class Meta:
@@ -201,7 +201,7 @@ class SettingsForm(forms.ModelForm):
             return username
         else:
             self.add_error(None,
-                           'В логине обнаружены недопустимые символы.')
+                           _('В логине обнаружены недопустимые символы.'))
             raise ValidationError(self)
 
     def clean_nickname(self):
@@ -210,7 +210,7 @@ class SettingsForm(forms.ModelForm):
             return nickname
         else:
             self.add_error(None,
-                           'В имени пользователя обнаружены недопустимые символы.')
+                           _('В имени пользователя обнаружены недопустимые символы.'))
             raise ValidationError(self)
 
     def save(self, request, **kwargs):

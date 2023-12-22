@@ -1,14 +1,15 @@
 {% extends 'layouts/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load extras %}
 {% block content %}
 <div class="row">
     <div class="col-7">
-        <h2><strong>Популярные вопросы &#128293;</strong></h2>
+        <h2><strong>{% trans "Популярные вопросы" %} &#128293;</strong></h2>
     </div>
     <div class="col-5" style="display: flex;
                         align-items: center;">
-        <a class="my-a-hot-questions" href="{% url 'index' page=1 %}"> Все вопросы &#127757;</a>
+        <a class="my-a-hot-questions" href="{% url 'index' page=1 %}">  {% trans "Все вопросы" %}&#127757;</a>
     </div>
 </div>
 {% for item in items %}
@@ -48,7 +49,7 @@
         </div>
         <div class="row">
             <div class="col-4">
-                <a href="{% url 'question' question_id=item.id page=1 %}" style="font-size: 15px; text-decoration: underline;">ответы
+                <a href="{% url 'question' question_id=item.id page=1 %}" style="font-size: 15px; text-decoration: underline;">{% trans "ответы" %}
 
                 </a>
             </div>

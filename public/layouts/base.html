@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +30,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <a class="navbar-brand" href="{% url 'start' %}">Главная</a>
+                        <a class="navbar-brand" href="{% url 'start' %}">{% trans "Главная" %}</a>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="..." aria-label="Поиск">
-                        <button class="btn btn-outline-light " type="submit">Поиск</button>
+                        <button class="btn btn-outline-light " type="submit">{% trans "Поиск" %}</button>
                     </form>
                     <div class="row my-avatar-settings-log">
                         <!-- {% block navbar %} -->
@@ -51,13 +52,13 @@
                                     <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
                                     <form action="{% url 'settings' %}">
                                         <button type="submit"
-                                            class="btn btn-outline-light my-btn-settings">Настройки</button>
+                                            class="btn btn-outline-light my-btn-settings">{% trans "Настройки" %}</button>
                                     </form>
                                 </div>
                                 <div class="col-6">
                                     <!--<a class="my-link-log" href="#">Вход</a> -->
                                     <form action="{% url 'logout' %}?continue={{ request.path }}?{{ request.GET.urlencode }}">
-                                        <button type="submit" class="btn btn-outline-light my-btn-log">Выйти</button>
+                                        <button type="submit" class="btn btn-outline-light my-btn-log">{% trans "Выйти" %}</button>
                                     </form>
                                 </div>
                             </div>
@@ -76,14 +77,14 @@
                                     <!-- <a class="my-link-settings" href="#">Регистрация</a> -->
                                     <form action="{% url 'signup' %}?continue={{ request.path }}?{{ request.GET.urlencode }}">
                                         <button type="submit"
-                                                class="btn btn-outline-light my-btn-settings">Регистрация
+                                                class="btn btn-outline-light my-btn-settings">{% trans "Регистрация" %}
                                         </button>
                                     </form>
                                 </div>
                                 <div class="col-6">
                                     <!--<a class="my-link-log" href="#">Вход</a> -->
                                     <form action="{% url 'login' %}?continue={{ request.path }}?{{ request.GET.urlencode }}">
-                                        <button type="submit" class="btn btn-outline-light my-btn-log">Войти</button>
+                                        <button type="submit" class="btn btn-outline-light my-btn-log">{% trans "Войти" %}</button>
                                     </form>
                                 </div>
                             </div>
@@ -104,7 +105,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-3">
-                    <p class="text-center" style="font-size: 20px;"><strong>Популярные теги</strong></p>
+                    <p class="text-center" style="font-size: 20px;"><strong>{% trans "Популярные теги" %}</strong></p>
                     <div class="container">
                         <div class="row text-start" style="font-size: 15px; padding-top: 4%;">
                             <div class="col-9" style="color: blue">BMSTU</a></div>
@@ -124,15 +125,15 @@
                     </div>
 
                     <div class="text-center" style="padding-top: 15%; padding-bottom: 7%; font-size: 20px;">
-                        <strong>Лучшие участники</strong>
+                        <strong>{% trans "Лучшие участники" %}</strong>
                     </div>
                     <ul style="font-size: 18px">
-                        <li style="padding-top: 1%">Алан Тьюринг</li>
-                        <li style="padding-top: 1%">Ада Лавлейс</li>
-                        <li style="padding-top: 1%">Билл Гейтс</li>
-                        <li style="padding-top: 1%">Линус Торвальдс</li>
-                        <li style="padding-top: 1%">Марк Цукерберг</li>
-                        <li style="padding-top: 1%">Сергей Брин</li>
+                        <li style="padding-top: 1%">{% trans "Алан_Тьюринг" %}</li>
+                        <li style="padding-top: 1%">{% trans "Ада_Лавлейс" %}</li>
+                        <li style="padding-top: 1%">{% trans "Билл_Гейтс" %}</li>
+                        <li style="padding-top: 1%">{% trans "Линус_Торвальдс" %}</li>
+                        <li style="padding-top: 1%">{% trans "Марк_Цукерберг" %}</li>
+                        <li style="padding-top: 1%">{% trans "Сергей_Брин" %}</li>
                     </ul>
                 </div>
             </div>
