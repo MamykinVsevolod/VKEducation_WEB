@@ -10,6 +10,7 @@ class Profile(models.Model):
     login = models.CharField(max_length=30)
 
 
+
 class Tag(models.Model):
     tag = models.CharField(max_length=20)
 
